@@ -1,0 +1,31 @@
+<% if(sanpham && sanpham.length > 0){ %>
+<div class="row">
+<div class="col -sm-6 col -md-6 col -md-offset-3 col -sm-offset-3">
+    <ul class="list-group">
+    <% sanpham.forEach(function(item) { %>
+          <li class="list-group-items">
+          <span class="badge"><%=item.item.ten%></span><br>
+           <strong><%=item.soluong%></strong><br>
+           <span class="lable lable-success">$<%=item.gia%></span>
+           <div class="btn-group">
+               <button class="btn btn-primary btn-xs dropdown-toggle " type="button" data-toggle="dropdown">Action</button>
+               <ul class="dropdown-menu">
+               <li><a href="/them1/<%=item.item._id %>">Them 1 san pham</a></li
+               <li><a href="/Xoa1/<%=item.item._id %>">Xoa 1 san pham</a></li>
+               <li><a href="/XoaTatCa/<%=item.item._id%>">Xoa tat ca</a></li>
+           </ul>
+                
+           
+       </li>
+       <%});%>
+       <div class="text-right">
+       <a href="/thanhtoan" type="button" class="btn btn-success">Thanh Toán</a>
+       </div>
+       </div>
+    </ul>
+<div>    
+</div>  
+
+ <% } else{ %>  
+ <h1>Không có sản pham</h1>
+<% } %>

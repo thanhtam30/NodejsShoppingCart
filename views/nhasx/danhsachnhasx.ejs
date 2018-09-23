@@ -1,0 +1,14 @@
+<ul>
+    <li class="current-menu-item"><a href="#">Home</a></li>
+	 <% nhasx.forEach((item) => { %>
+		<li><a href="#"><%= item.tennhasx %></a>
+			<ul>
+				<% item.sanpham.forEach((subItem) => { %>
+				
+						<li><a href="#"><%= subItem.ten %></a></li>
+				
+				<% })%>
+			</ul>
+		</li>
+	<% })%>
+</ul>

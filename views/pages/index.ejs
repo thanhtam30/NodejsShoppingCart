@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+    <% if(login){ %>
+    <li><a href="/profile"> <%= user.email %></a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="/logout">Logout</a></li>
+  <% } else{ %>  
+  <li><a href="/signup">Đăng ký</a></li>
+  <li><a href="/login">Đăng nhập</a></li>
+ <% } %>
+    </ul>
+  </li>
+</head>
+<% include header.ejs %>
+
+<body>
+    <div class="container">
+        <div class="row" >
+            <% sanpham.forEach(function(item) { %>
+                <div class="col-md-6" >
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3><%= item.ten %></h3>
+                            <p><%= item.chitiet %></p>
+                            <p>$<%= item.gia %></p>
+                        </div>
+                        <div class="clearfix">
+                        <a href="/themgiohang/<%= item.id %>" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
+                    </div>
+                        </div>
+                </div>
+            <% }) %>
+        </div>
+            <% if (pages > 0) { %>
+                <ul class="pagination text-center">
+                    <% if (current == 1) { %>
+                        <li class="disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li><a href="/index/1">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 2) %>
+                    <% if (i !== 1) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li><a href="/index/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li><a href="/index/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
